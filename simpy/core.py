@@ -87,7 +87,6 @@ class Process(object):
         self._next_event = None
 
         self._joiners = []  # Procs that wait for this one
-        # self._observers = []  # Procs that want to get interrupted
         self._interrupts = []  # Pending interrupts for this proc
 
     @property
@@ -307,7 +306,13 @@ def step(env):
 
     # env._active_proc has terminated
     except StopIteration:
-        _join(env, proc)
+        proc._alive = False
+        for joiner in proc._joiners:
+            if not joiner._alive:
+                continue
+            joiner._next_event = None
+            _schedule(env, joiner, EVT_RESUME, proc.result)
+
         env._active_proc = None
 
         return  # Don't need to check a new event
@@ -315,13 +320,14 @@ def step(env):
     # Check what was yielded
     if type(target) is Process:
         if proc._next_event:
+            # This check is required to throw an error into the PEM.
             proc._peg.throw(RuntimeError('%s already has an event '
                     'scheduled. Did you forget to yield?' % proc))
 
         if target.is_alive:
             # Schedule a hold(Infinity) so that the waiting proc can
             # be interrupted if target terminates.
-            proc._next_event = (EVT_RESUME, None)
+            _schedule(env, proc, EVT_RESUME, at=Infinity)
             target._joiners.append(proc)
 
         else:
@@ -392,22 +398,3 @@ def _schedule(env, proc, evt_type, value=None, at=None):
         at = env._now
 
     heappush(env._events, (at, next(env._eid), proc, proc._next_event))
-
-
-def _join(env, proc):
-    """Notify all registered processes that the process ``proc`` terminated."""
-    joiners = proc._joiners
-    # observers = proc._observers
-
-    proc._alive = False
-
-    for joiner in joiners:
-        # A joiner is always alive, since "yield proc" blocks until
-        # "proc" has terminated.
-        joiner._next_event = None
-        _schedule(env, joiner, EVT_RESUME, proc.result)
-
-    # for observer in observers:
-    #     if not observer.is_alive:
-    #         continue
-    #     observer.interrupt(proc)

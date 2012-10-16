@@ -127,7 +127,8 @@ def test_illegal_hold_followed_by_join(env):
     env.start(parent(env))
     ei = pytest.raises(RuntimeError, simulate, env)
     # Assert that the exceptino was correctly thwon into the PEM
-    assert "yield env.start(child(env))" in str(ei.traceback[-1])
+    str_tb = str(ei.traceback[-1])
+    assert "yield env.start(child(env))" in str_tb
 
 
 def test_interrupted_join(env):
