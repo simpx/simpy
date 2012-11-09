@@ -14,7 +14,7 @@ def test_discrete_time_steps(env, log):
     def pem(env, log):
         while True:
             log.append(env.now)
-            yield env.hold(delta_t=1)
+            yield env.timeout(delay=1)
 
     env.start(pem(env, log))
     simulate(env, until=3)
@@ -27,7 +27,7 @@ def test_stop_self(env, log):
     def pem(env, log):
         while env.now < 2:
             log.append(env.now)
-            yield env.hold(1)
+            yield env.timeout(1)
 
     env.start(pem(env, log))
     simulate(env, 10)
@@ -43,10 +43,10 @@ def test_start_non_process(env):
     pytest.raises(ValueError, env.start, foo)
 
 
-def test_negative_hold(env):
-    """Don't allow negative hold times."""
+def test_negative_timeout(env):
+    """Don't allow negative timeout times."""
     def pem(env):
-        yield env.hold(-1)
+        yield env.timeout(-1)
 
     env.start(pem(env))
     pytest.raises(ValueError, simulate, env)
@@ -74,13 +74,13 @@ def test_illegal_yield(env):
 def test_get_process_state(env):
     """A process is alive until it's generator has not terminated."""
     def pem_a(env):
-        yield env.hold(3)
+        yield env.timeout(3)
 
     def pem_b(env, pem_a):
-        yield env.hold(1)
+        yield env.timeout(1)
         assert pem_a.is_alive
 
-        yield env.hold(3)
+        yield env.timeout(3)
         assert not pem_a.is_alive
 
     proc_a = env.start(pem_a(env))
@@ -93,8 +93,8 @@ def test_simulate_negative_until(env):
     pytest.raises(ValueError, simulate, env, -3)
 
 
-def test_hold_value(env):
-    """You can pass an additional *value* to *hold* which will be
+def test_timeout_value(env):
+    """You can pass an additional *value* to *timeout* which will be
     directly yielded back into the PEM. This is useful to implement some
     kinds of resources or other additions.
 
@@ -102,7 +102,7 @@ def test_hold_value(env):
 
     """
     def pem(env):
-        val = yield env.hold(1, 'ohai')
+        val = yield env.timeout(1, 'ohai')
         assert val == 'ohai'
 
     env.start(pem(env))
