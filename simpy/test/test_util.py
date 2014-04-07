@@ -150,10 +150,10 @@ def test_wait_for_all_with_errors(env):
             assert e.args[0] == 'crashing'
 
         # Although the condition has failed, interim values are available.
-        assert condition._interim_values[events[0]] == 1
-        assert condition._interim_values[events[1]].args[0] == 'crashing'
+        assert condition._events[0].value == 1
+        assert condition._events[1].value.args[0] == 'crashing'
         # The last child has not terminated yet.
-        assert events[2] not in condition._interim_values
+        assert not events[2].processed
 
     env.process(parent(env))
     env.run()
@@ -169,7 +169,7 @@ def test_all_of_chaining(env):
         condition_A &= condition_B
 
         results = yield condition_A
-        assert sorted(results.values()) == [0, 0, 1, 1]
+        assert list(results.values()) == [0, 1, 0, 1]
 
     env.process(parent(env))
     env.run()
@@ -196,17 +196,14 @@ def test_all_of_chaining_intermediate_results(env):
 
 
 def test_all_of_with_triggered_events(env):
-    """Only pending events may be added to a wait_for_all condition."""
+    """Processed events can be added to a condition. Confirm this with
+    all_of."""
     def parent(env):
-        event = env.timeout(1)
+        events = [env.timeout(0, value='spam'), env.timeout(1, value='eggs')]
         yield env.timeout(2)
 
-        try:
-            env.all_of([event])
-            assert False, 'Expected an exception'
-        except RuntimeError as e:
-            assert re.match(r'Event <Timeout\(1\) object at 0x.*> has already '
-                            r'been triggered', e.args[0])
+        values = list((yield env.all_of(events)).values())
+        assert values == ['spam', 'eggs']
 
     env.process(parent(env))
     env.run()
@@ -243,9 +240,9 @@ def test_any_of_with_errors(env):
         except RuntimeError as e:
             assert e.args[0] == 'crashing'
 
-        assert condition._interim_values[events[0]].args[0] == 'crashing'
+        assert condition._events[0].value.args[0] == 'crashing'
         # The last event has not terminated yet.
-        assert events[1] not in condition._interim_values
+        assert not events[1].processed
 
     env.process(parent(env))
     env.run()
@@ -268,17 +265,14 @@ def test_any_of_chaining(env):
 
 
 def test_any_of_with_triggered_events(env):
-    """Only pending events may be added to a any_of condition."""
+    """Processed events can be added to a condition. Confirm this with
+    all_of."""
     def parent(env):
-        event = env.timeout(1)
+        events = [env.timeout(0, value='spam'), env.timeout(1, value='eggs')]
         yield env.timeout(2)
 
-        try:
-            env.any_of([event])
-            assert False, 'Expected an exception'
-        except RuntimeError as e:
-            assert re.match(r'Event <Timeout\(1\) object at 0x.*> has already '
-                            r'been triggered', e.args[0])
+        values = list((yield env.any_of(events)).values())
+        assert values == ['spam', 'eggs']
 
     env.process(parent(env))
     env.run()
@@ -301,4 +295,16 @@ def test_empty_all_of(env):
         assert results == {}
 
     env.process(parent(env))
+    env.run()
+
+
+def test_all_of_expansion(env):
+    """The result of AllOf is an OrderedDict, which allows to expand its values
+    directly into variables."""
+    def p(env):
+        timeouts = [env.timeout(d, d) for d in [3, 2, 1]]
+        a, b, c = (yield env.all_of(timeouts)).values()
+        assert a == 3 and b == 2 and c == 1
+
+    env.process(p(env))
     env.run()
