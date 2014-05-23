@@ -1,19 +1,15 @@
 """
-SimPy defines three kinds of resources with one or more concrete resource types
-each:
+SimPy implements three types of resources that can be used to synchronize
+processes or to model congestion points:
 
-- :mod:`~simpy.resources.resource`: Resources that can be used by a limited
-  number of processes at a time (e.g., a gas station with a limited number of
-  fuel pumps).
+.. autosummary::
 
-- :mod:`~simpy.resources.container`: Resources that model the production and
-  consumption of a homogeneous, undifferentiated bulk. It may either be
-  continuous (like water) or discrete (like apples).
+    ~simpy.resources.resource
+    ~simpy.resources.container
+    ~simpy.resources.store
 
-- :mod:`~simpy.resources.store`: Resources that allow the production and
-  consumption of discrete Python objects.
-
-The :mod:`~simpy.resources.base` module defines the base classes that are used
-by all resource types.
+They are derived from the base classes defined in the
+:mod:`~simpy.resources.base` module. These classes are also meant to support
+the implementation of custom resource types.
 
 """

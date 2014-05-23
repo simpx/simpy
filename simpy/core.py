@@ -1,6 +1,5 @@
 """
-This module contains the implementation of SimPy's core classes. The most
-important ones are directly importable via :mod:`simpy`.
+Core components for event-discrete simulation environments.
 
 """
 import types
@@ -33,9 +32,7 @@ class BoundClass(object):
     @staticmethod
     def bind_early(instance):
         """Bind all :class:`BoundClass` attributes of the *instance's* class
-        to the instance itself to increase performance.
-
-        """
+        to the instance itself to increase performance."""
         cls = type(instance)
         for name, obj in cls.__dict__.items():
             if type(obj) is BoundClass:
@@ -44,18 +41,17 @@ class BoundClass(object):
 
 
 class EmptySchedule(Exception):
-    """Thrown by the :class:`Environment` if there are no further events to be
+    """Thrown by an :class:`Environment` if there are no further events to be
     processed."""
     pass
 
 
 class BaseEnvironment(object):
-    """The abstract definition of an environment.
+    """Base class for event processing environments.
 
     An implementation must at least provide the means to access the current
     time of the environment (see :attr:`now`) and to schedule (see
-    :meth:`schedule()`) as well as execute (see :meth:`step()` and
-    :meth:`run()`) events.
+    :meth:`schedule()`) events as well as processing them (see :meth:`step()`.
 
     The class is meant to be subclassed for different execution environments.
     For example, SimPy defines a :class:`Environment` for simulations with
@@ -77,24 +73,26 @@ class BaseEnvironment(object):
         """Schedule an *event* with a given *priority* and a *delay*.
 
         There are two default priority values, :data:`~simpy.events.URGENT` and
-        :data:`~simpy.events.NORMAL`."""
+        :data:`~simpy.events.NORMAL`.
+
+        """
         raise NotImplementedError(self)
 
     def step(self):
-        """Process the next event."""
+        """Processes the next event."""
         raise NotImplementedError(self)
 
     def run(self, until=None):
         """Executes :meth:`step()` until the given criterion *until* is met.
 
-        - If it is ``None`` (which is the default) this method will return if
-          there are no further events to be processed.
+        - If it is ``None`` (which is the default), this method will return
+          when there are no further events to be processed.
 
-        - If it is an :class:`~simpy.events.Event` the method will continue
+        - If it is an :class:`~simpy.events.Event`, the method will continue
           stepping until this event has been triggered and will return its
           value.
 
-        - If it can be converted to a number the method will continue stepping
+        - If it is a number, the method will continue stepping
           until the environment's time reaches *until*.
 
         """
@@ -129,13 +127,22 @@ class BaseEnvironment(object):
 
         return until.value
 
+    def exit(self, value=None):
+        """Stop the current process, optionally providing a ``value``.
+
+        This is a convenience function provided for Python versions prior to
+        3.3. From Python 3.3, you can instead use ``return value`` in
+        a process.
+
+        """
+        raise StopIteration(value)
+
 
 class Environment(BaseEnvironment):
-    """Inherits :class:`BaseEnvironment` and implements a simulation
-    environment which simulates the passing of time by stepping from event to
-    event.
+    """Execution environment for an event-based simulation. The passing of time
+    is simulated by stepping from event to event.
 
-    You can provide an *initial_time* for the environment. By defaults, it
+    You can provide an *initial_time* for the environment. By default, it
     starts at ``0``.
 
     This class also provides aliases for common event types, for example
@@ -144,7 +151,7 @@ class Environment(BaseEnvironment):
     """
     def __init__(self, initial_time=0):
         self._now = initial_time
-        self._queue = []  # Thelist of all currently scheduled events.
+        self._queue = []  # The list of all currently scheduled events.
         self._eid = count()  # Counter for event IDs
         self._active_proc = None
 
@@ -167,25 +174,14 @@ class Environment(BaseEnvironment):
     all_of = BoundClass(AllOf)
     any_of = BoundClass(AnyOf)
 
-    def exit(self, value=None):
-        """Convenience function provided for Python versions prior to 3.3. Stop
-        the current process, optionally providing a ``value``.
-
-        .. note::
-
-            From Python 3.3, you can use ``return value`` instead.
-
-        """
-        raise StopIteration(value)
-
     def schedule(self, event, priority=NORMAL, delay=0):
         """Schedule an *event* with a given *priority* and a *delay*."""
         heappush(self._queue,
                  (self._now + delay, priority, next(self._eid), event))
 
     def peek(self):
-        """Get the time of the next scheduled event. Return :data:`Infinity`
-        if there is no further event."""
+        """Get the time of the next scheduled event. Return
+        :data:`~simpy.core.Infinity` if there is no further event."""
         try:
             return self._queue[0][0]
         except IndexError:
