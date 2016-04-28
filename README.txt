@@ -97,8 +97,8 @@ If you’ve never used SimPy before, the `SimPy tutorial`__ is a good starting
 point for you. You can also try out some of the `Examples`__ shipped with
 SimPy.
 
-__ https://simpy.readthedocs.org/en/latest/simpy_intro/index.html
-__ https://simpy.readthedocs.org/en/latest/examples/index.html
+__ https://simpy.readthedocs.io/en/latest/simpy_intro/index.html
+__ https://simpy.readthedocs.io/en/latest/examples/index.html
 
 
 Documentation and Help
@@ -112,12 +112,12 @@ the `source code`__.
 
 If you find any bugs, please post them on our `issue tracker`__.
 
-__ https://simpy.readthedocs.org/en/latest/simpy_intro/index.html
-__ https://simpy.readthedocs.org/en/latest/examples/index.html
-__ https://simpy.readthedocs.org/en/latest/topical_guides/index.html
-__ https://simpy.readthedocs.org/en/latest/api_reference/index.html
-__ https://simpy.readthedocs.org/en/latest/about/index.html
-__ https://simpy.readthedocs.org/
+__ https://simpy.readthedocs.io/en/latest/simpy_intro/index.html
+__ https://simpy.readthedocs.io/en/latest/examples/index.html
+__ https://simpy.readthedocs.io/en/latest/topical_guides/index.html
+__ https://simpy.readthedocs.io/en/latest/api_reference/index.html
+__ https://simpy.readthedocs.io/en/latest/about/index.html
+__ https://simpy.readthedocs.io/
 __ mailto:python-simpy@googlegroups.com
 __ https://bitbucket.org/simpy/simpy/src
 __ https://bitbucket.org/simpy/simpy/issues?status=new&status=open
