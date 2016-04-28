@@ -150,8 +150,8 @@ You can find information about older versions on the `history page`__
 
 __ http://qt-project.org/wiki/PySide
 __ http://matplotlib.org/
-__ https://simpy.readthedocs.org/en/latest/topical_guides/porting_from_simpy2.html
-__ https://simpy.readthedocs.org/en/latest/about/history.html
+__ https://simpy.readthedocs.io/en/latest/topical_guides/porting_from_simpy2.html
+__ https://simpy.readthedocs.io/en/latest/about/history.html
 
 
 2.3.1 – 2012-01-28
