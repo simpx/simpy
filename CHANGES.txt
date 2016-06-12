@@ -4,8 +4,8 @@ Changelog for SimPy
 3.0.9 – 2016-06-12
 ------------------
 
-- [NEW] :class:`~simpy.resources.store.PriorityStore` resource and performance
-  benchmarks were implemented by Peter Grayson.
+- [NEW] PriorityStore resource and performance benchmarks were implemented by
+  Peter Grayson.
 - [FIX] Support for identifying nested preemptions was added by Cristian Klein.
 
 3.0.8 – 2015-06-23
