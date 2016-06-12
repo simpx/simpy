@@ -15,12 +15,18 @@ Python's generators as they proved to work very well.
 The package has been hosted on Sourceforge.net since September 15th, 2002.
 In June 2012, the project moved to Bitbucket.org.
 
+3.0.9 – 2016-06-12
+==================
+
+- [NEW] :class:`~simpy.resources.store.PriorityStore` resource and performance
+  benchmarks were implemented by Peter Grayson.
+- [FIX] Support for identifying nested preemptions was added by Cristian Klein.
 
 3.0.8 – 2015-06-23
 ==================
 
 - [NEW] Added a monitoring guide to the documentation.
-- [FIX] Improved packaging (thanks to Larissa Reis).
+- [FIX] Improved packaging (thanks to Larissa Reis).
 - [FIX] Fixed and improved various test cases.
 
 

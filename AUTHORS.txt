@@ -18,3 +18,5 @@ We’d also like to thank:
 - Christoph Körner
 - Andreas Beham
 - Larissa Reis
+- Peter Grayson
+- Cristian Klein
