@@ -2,7 +2,8 @@
 Ports
 =====
 
-An almost feature-complete reimplementation of SimPy in C# was written by
-Andreas Beham and is available at `github.com/abeham/SimSharp`__
+Reimplementations of SimPy are available in the following languages:
 
-__ http://github.com/abeham/SimSharp
+- C#: `SimSharp <https://github.com/abeham/SimSharp>`_ (written by Andreas Beham)
+- Julia: `SimJulia <https://github.com/BenLauwens/SimJulia.jl>`_
+- R: `Simmer <https://github.com/r-simmer/simmer>`_
