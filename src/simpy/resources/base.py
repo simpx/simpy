@@ -64,8 +64,8 @@ class Get(Event):
 
     .. code-block:: python
 
-        with res.put(item) as request:
-            yield request
+        with res.get() as request:
+            item = yield request
 
     """
     def __init__(self, resource):
