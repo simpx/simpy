@@ -108,3 +108,30 @@ def test_callback_modification(env):
     event.callbacks.append(callback)
     event.succeed()
     env.run(until=event)
+
+
+def test_condition_callback_removal(env):
+    """A condition will remove all outstanding callbacks from its events."""
+    a, b = env.event(), env.event()
+    a.succeed()
+    env.run(until=a | b)
+    # The condition has removed its callback from event b.
+    assert not a.callbacks and not b.callbacks
+
+
+def test_condition_nested_callback_removal(env):
+    """A condition will remove all outstanding callbacks from its events (even
+    if nested)."""
+    a, b, c = env.event(), env.event(), env.event()
+    b_and_c = b & c
+    a_or_b_and_c = a | b_and_c
+    a.succeed()
+    env.run(until=a_or_b_and_c)
+    # Callbacks from nested conditions are also removed.
+    assert not a.callbacks
+    assert not b.callbacks
+    assert not c.callbacks
+    for cb in b_and_c.callbacks:
+        # b_and_c may have a _build_value callback.
+        assert cb.__name__ != '_check'
+    assert not a_or_b_and_c.callbacks

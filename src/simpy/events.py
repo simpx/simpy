@@ -528,9 +528,25 @@ class Condition(Event):
 
     def _build_value(self, event):
         """Build the value of this condition."""
+        self._remove_check_callbacks()
         if event._ok:
             self._value = ConditionValue()
             self._populate_value(self._value)
+
+    def _remove_check_callbacks(self):
+        """Remove _check() callbacks from events recursively.
+
+        Once the condition has triggered, the condition's events no longer need
+        to have _check() callbacks. Removing the _check() callbacks is
+        important to break circular references between the condition and
+        untriggered events.
+
+        """
+        for event in self._events:
+            if event.callbacks and self._check in event.callbacks:
+                event.callbacks.remove(self._check)
+            if isinstance(event, Condition):
+                event._remove_check_callbacks()
 
     def _check(self, event):
         """Check if the condition was already met and schedule the *event* if
@@ -545,8 +561,8 @@ class Condition(Event):
             event._defused = True
             self.fail(event._value)
         elif self._evaluate(self._events, self._count):
-            # The condition has been met. The _collect_values callback will
-            # populate set the value once this condition gets processed.
+            # The condition has been met. The _build_value() callback will
+            # populate the ConditionValue once this condition is processed.
             self.succeed()
 
     @staticmethod
