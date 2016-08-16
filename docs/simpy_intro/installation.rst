@@ -12,6 +12,9 @@ Python 2 (>= 2.7) and Python 3 (>= 3.2). PyPy is also supported. If you have
 
 and you are done.
 
+Installing from source
+======================
+
 Alternatively, you can `download SimPy <http://pypi.python.org/pypi/SimPy/>`_
 and install it manually. Extract the archive, open a terminal window where you
 extracted SimPy and type:
@@ -21,7 +24,8 @@ extracted SimPy and type:
     $ python setup.py install
 
 You can now optionally run SimPy's tests to see if everything works fine. You
-need `pytest <http://pytest.org>`_ for this:
+need `pytest <http://pytest.org>`_ for this. Run the following command within
+the source directory of SimPy:
 
 .. code-block:: bash
 
