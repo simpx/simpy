@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='simpy',
-    version='3.0.9',
+    version='3.0.10',
     author='Ontje Lünsdorf, Stefan Scherfke',
     author_email='the_com at gmx.de; stefan at sofa-rockers.org',
     description='Event discrete, process based simulation for Python.',
