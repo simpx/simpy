@@ -28,10 +28,10 @@ examples: `watch the video`__ or `get the slides`__.
 
 __ http://docs.python.org/3/glossary.html#term-generator
 __ https://simpy.readthedocs.io/en/latest/
-__ http://simpy.readthedocs.io/en/latest/simpy_intro/index.html
-__ http://simpy.readthedocs.io/en/latest/topical_guides/index.html
-__ http://simpy.readthedocs.io/en/latest/examples/index.html
-__ http://simpy.readthedocs.io/en/latest/api_reference/index.html
+__ https://simpy.readthedocs.io/en/latest/simpy_intro/index.html
+__ https://simpy.readthedocs.io/en/latest/topical_guides/index.html
+__ https://simpy.readthedocs.io/en/latest/examples/index.html
+__ https://simpy.readthedocs.io/en/latest/api_reference/index.html
 __ https://groups.google.com/forum/#!forum/python-simpy
 __ https://www.youtube.com/watch?v=Bk91DoAEcjY
 __ http://stefan.sofa-rockers.org/downloads/simpy-ep14.pdf
