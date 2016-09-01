@@ -80,8 +80,9 @@ slow 1
 fast 1.0
 fast 1.5
 
-The documentation contains a tutorial, several guides explaining key concepts, a
-number of examples and the API reference.
+The documentation contains a :ref:`tutorial <intro>`, :ref:`several guides
+<guides>` explaining key concepts, a number of :ref:`examples
+<examples>` and the :ref:`API reference <api>`.
 
 SimPy is released under the MIT License. Simulation model developers are
 encouraged to share their SimPy modeling techniques with the SimPy community.
