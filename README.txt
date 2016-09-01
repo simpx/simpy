@@ -2,14 +2,11 @@ SimPy
 =====
 
 SimPy is a process-based discrete-event simulation framework based on standard
-Python. Its event dispatcher is based on Python’s `generators`__ and can also
-be used for asynchronous networking or to implement multi-agent systems (with
-both, simulated and real communication).
-
-Processes in SimPy are defined by Python generator functions and can, for
-example, be used to model active components like customers, vehicles or agents.
-SimPy also provides various types of shared *resources* to model limited
-capacity congestion points (like servers, checkout counters and tunnels).
+Python. Processes in SimPy are defined by Python `generator`__ functions and
+can, for example, be used to model active components like customers, vehicles or
+agents.  SimPy also provides various types of shared resources to model
+limited capacity congestion points (like servers, checkout counters and
+tunnels).
 
 Simulations can be performed “as fast as possible”, in real time (wall clock
 time) or by manually stepping through the events.
@@ -19,8 +16,8 @@ has no features that help you with that. Also, SimPy is not really required for
 simulations with a fixed step size and where your processes don’t interact with
 each other or with shared resources.
 
-The SimPy distribution contains tutorials, in-depth documentation, and a large
-number of examples.
+The `documentation`__ contains a `tutorial`__, `several guides`__ explaining key
+concepts, a number of `examples`__ and the `API reference`__.
 
 SimPy is released under the MIT License. Simulation model developers are
 encouraged to share their SimPy modeling techniques with the SimPy community.
@@ -30,6 +27,11 @@ There is an introductory talk that explains SimPy’s concepts and provides some
 examples: `watch the video`__ or `get the slides`__.
 
 __ http://docs.python.org/3/glossary.html#term-generator
+__ https://simpy.readthedocs.io/en/latest/
+__ http://simpy.readthedocs.io/en/latest/simpy_intro/index.html
+__ http://simpy.readthedocs.io/en/latest/topical_guides/index.html
+__ http://simpy.readthedocs.io/en/latest/examples/index.html
+__ http://simpy.readthedocs.io/en/latest/api_reference/index.html
 __ https://groups.google.com/forum/#!forum/python-simpy
 __ https://www.youtube.com/watch?v=Bk91DoAEcjY
 __ http://stefan.sofa-rockers.org/downloads/simpy-ep14.pdf
