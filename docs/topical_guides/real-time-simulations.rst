@@ -1,3 +1,5 @@
+.. _realtime:
+
 =====================
 Real-time simulations
 =====================

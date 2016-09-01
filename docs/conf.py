@@ -153,7 +153,7 @@ html_static_path = ['_static']
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {'index': 'index.html'}
+html_additional_pages = {}
 
 # If false, no module index is generated.
 # html_domain_indices = True
@@ -187,6 +187,10 @@ htmlhelp_basename = 'SimPydoc'
 
 # -- Options for LaTeX output -------------------------------------------------
 
+latex_elements = {
+    'classoptions': ',openany,oneside',
+    'babel': '\\usepackage[english]{babel}'
+}
 # The paper size ('letter' or 'a4').
 # latex_paper_size = 'letter'
 
@@ -196,12 +200,13 @@ htmlhelp_basename = 'SimPydoc'
 # Grouping the document tree into LaTeX files. List of tuples (source start
 # file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'SimPy.tex', 'SimPy Documentation', ', '.join(authors), 'manual'),
+    ('contents', 'SimPy.tex', 'SimPy Documentation', ', '.join(authors),
+        'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-# latex_logo = None
+latex_logo = '_static/simpy-logo-small.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

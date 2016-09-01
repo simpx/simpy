@@ -1,13 +1,17 @@
+.. _contents:
+
 =======================
 Documentation for SimPy
 =======================
 
-Contents:
+.. only:: html
+
+    Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   SimPy home <index>
+   index
    simpy_intro/index
    topical_guides/index
    examples/index

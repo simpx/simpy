@@ -80,6 +80,7 @@ The most important method here is :meth:`Environment.run()`:
      >>> env.run(until=proc)
      'Monty Python’s Flying Circus'
 
+.. _simulation-step:
 
 To step through the simulation event by event, the environment offers
 :meth:`~Environment.peek()` and :meth:`~Environment.step()`.

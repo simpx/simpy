@@ -9,7 +9,7 @@ them inherit :class:`simpy.events.Event`. The listing below shows the
 hierarchy of events built into SimPy::
 
    events.Event
-   ↑
+   |
    +— events.Timeout
    |
    +— events.Initialize
@@ -17,12 +17,13 @@ hierarchy of events built into SimPy::
    +— events.Process
    |
    +— events.Condition
-   |  ↑
+   |  |
    |  +— events.AllOf
    |  |
    |  +— events.AnyOf
-   ⋮
-   +– [resource events]
+   .
+   .
+   .
 
 This is the set of basic events. Events are extensible and resources, for
 example, define additional events. In this guide, we'll focus on the events in

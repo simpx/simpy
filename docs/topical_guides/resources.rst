@@ -1,3 +1,5 @@
+.. _shared-resources:
+
 ================
 Shared Resources
 ================
