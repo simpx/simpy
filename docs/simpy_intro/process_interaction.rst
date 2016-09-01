@@ -58,7 +58,7 @@ it to finish::
     ...         yield self.env.timeout(duration)
 
 Starting the simulation is straight forward again: We create an environment,
-one (or more) cars and finally call :meth:`~Environment.simulate()`.
+one (or more) cars and finally call :meth:`~simpy.core.Environment.run()`.
 
 ::
 
