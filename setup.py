@@ -11,7 +11,7 @@ setup(
     long_description='\n\n'.join(
         open(f, 'rb').read().decode('utf-8')
         for f in ['README.txt', 'CHANGES.txt', 'AUTHORS.txt']),
-    url='https://simpy.readthedocs.org',
+    url='https://simpy.readthedocs.io',
     license='MIT License',
     install_requires=[],
     packages=find_packages(where='src'),
