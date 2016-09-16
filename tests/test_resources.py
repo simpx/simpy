@@ -304,26 +304,38 @@ def test_preemptive_resource_timeout_0(env):
 
 
 def test_mixed_preemption(env, log):
-    def process(id, env, res, delay, prio, preempt, log):
+    def p(id, env, res, delay, prio, preempt, log):
         yield env.timeout(delay)
         with res.request(priority=prio, preempt=preempt) as req:
             try:
                 yield req
-                yield env.timeout(5)
+                yield env.timeout(2)
                 log.append((env.now, id))
             except simpy.Interrupt as ir:
                 log.append((env.now, id, (ir.cause.by, ir.cause.usage_since)))
 
-    res = simpy.PreemptiveResource(env, 2)
-    env.process(process(0, env, res, 0, 1, True, log))
-    env.process(process(1, env, res, 0, 1, True, log))
-    env.process(process(2, env, res, 1, 0, False, log))
-    p3 = env.process(process(3, env, res, 1, 0, True, log))
-    env.process(process(4, env, res, 2, 2, True, log))
+    res = simpy.PreemptiveResource(env, 1)
+    # p0: First user:
+    _p = env.process(p(0, env, res, delay=0, prio=2, preempt=True, log=log))
+    # p1: Waits (cannot preempt):
+    _p = env.process(p(1, env, res, delay=0, prio=2, preempt=True, log=log))
+    # p2: Waits later, but has a higher prio:
+    _p = env.process(p(2, env, res, delay=1, prio=1, preempt=False, log=log))
+    # p3: Preempt the above proc:
+    p3 = env.process(p(3, env, res, delay=3, prio=0, preempt=True, log=log))
+    # p4: Wait again:
+    _p = env.process(p(4, env, res, delay=4, prio=3, preempt=True, log=log))
 
     env.run()
 
-    assert log == [(1, 1, (p3, 0)), (5, 0), (6, 3), (10, 2), (11, 4)]
+    assert log == [
+        (2, 0),           # p0 done
+        (3, 2, (p3, 2)),  # p2 got it next, but got interrupted by p3
+        (5, 3),           # p3 done
+        (7, 1),           # p1 done (finally got the resource)
+        (9, 4),           # p4 done
+    ]
+
 
 def test_nested_preemption(env, log):
     def process(id, env, res, delay, prio, preempt, log):

@@ -102,6 +102,9 @@ class PriorityRequest(Request):
         self.time = resource._env.now
         """The time at which the request was made."""
 
+        self.usage_since = None
+        """The time at which the request succeeded."""
+
         self.key = (self.priority, self.time, not self.preempt)
         """Key for sorting events. Consists of the priority (lower value is
         more important), the time at which the request was made (earlier
@@ -173,6 +176,7 @@ class Resource(base.BaseResource):
     def _do_put(self, event):
         if len(self.users) < self.capacity:
             self.users.append(event)
+            event.usage_since = self._env.now
             event.succeed()
 
     def _do_get(self, event):
@@ -222,8 +226,8 @@ class PreemptiveResource(PriorityResource):
             preempt = sorted(self.users, key=lambda e: e.key)[-1]
             if preempt.key > event.key:
                 self.users.remove(preempt)
-                preempt.proc.interrupt(Preempted(by=event.proc,
-                                                 usage_since=preempt.time,
-                                                 resource=self))
+                preempt.proc.interrupt(Preempted(
+                    by=event.proc, usage_since=preempt.usage_since,
+                    resource=self))
 
         return super(PreemptiveResource, self)._do_put(event)
