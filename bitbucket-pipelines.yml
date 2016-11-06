@@ -3,5 +3,6 @@ pipelines:
   default:
     - step:
         script:
+          - pip install -e .
           - pip install -U pytest pytest-cov
           - py.test --cov=src --cov-report=term-missing tests
