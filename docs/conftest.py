@@ -86,9 +86,9 @@ class ExampleItem(pytest.Item):
 class ReprFailExample(TerminalRepr):
     """Reports output mismatches in a nice and informative representation."""
     Markup = {
-            '+': dict(green=True),
-            '-': dict(red=True),
-            '?': dict(bold=True),
+        '+': dict(green=True),
+        '-': dict(red=True),
+        '?': dict(bold=True),
     }
     """Colorization codes for the diff markup."""
 

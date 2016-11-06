@@ -36,7 +36,7 @@ def test_resource(env, log):
     env.process(pem(env, 'b', resource, log))
     env.run()
 
-    assert log == [('a', 1), ('b',  2)]
+    assert log == [('a', 1), ('b', 2)]
 
 
 def test_resource_capacity(env):
@@ -58,7 +58,7 @@ def test_resource_context_manager(env, log):
     env.process(pem(env, 'b', resource, log))
     env.run()
 
-    assert log == [('a', 1), ('b',  2)]
+    assert log == [('a', 1), ('b', 2)]
 
 
 def test_resource_slots(env, log):
@@ -316,15 +316,15 @@ def test_mixed_preemption(env, log):
 
     res = simpy.PreemptiveResource(env, 1)
     # p0: First user:
-    _p = env.process(p(0, env, res, delay=0, prio=2, preempt=True, log=log))
+    env.process(p(0, env, res, delay=0, prio=2, preempt=True, log=log))
     # p1: Waits (cannot preempt):
-    _p = env.process(p(1, env, res, delay=0, prio=2, preempt=True, log=log))
+    env.process(p(1, env, res, delay=0, prio=2, preempt=True, log=log))
     # p2: Waits later, but has a higher prio:
-    _p = env.process(p(2, env, res, delay=1, prio=1, preempt=False, log=log))
+    env.process(p(2, env, res, delay=1, prio=1, preempt=False, log=log))
     # p3: Preempt the above proc:
     p3 = env.process(p(3, env, res, delay=3, prio=0, preempt=True, log=log))
     # p4: Wait again:
-    _p = env.process(p(4, env, res, delay=4, prio=3, preempt=True, log=log))
+    env.process(p(4, env, res, delay=4, prio=3, preempt=True, log=log))
 
     env.run()
 
@@ -360,26 +360,31 @@ def test_nested_preemption(env, log):
                         log.append((env.now, id))
                     except simpy.Interrupt as ir:
                         log.append((env.now, id, (ir.cause.by,
-                            ir.cause.usage_since, ir.cause.resource)))
+                                                  ir.cause.usage_since,
+                                                  ir.cause.resource)))
             except simpy.Interrupt as ir:
                 log.append((env.now, id, (ir.cause.by, ir.cause.usage_since,
-                    ir.cause.resource)))
+                                          ir.cause.resource)))
 
     res0 = simpy.PreemptiveResource(env, 1)
     res1 = simpy.PreemptiveResource(env, 1)
 
     env.process(process2(0, env, res0, res1, 0, -1, True, log))
-    p1 = env.process(process (1, env, res1, 1, -2, True, log))
+    p1 = env.process(process(1, env, res1, 1, -2, True, log))
 
     env.process(process2(2, env, res0, res1, 20, -1, True, log))
-    p3 = env.process(process (3, env, res0, 21, -2, True, log))
+    p3 = env.process(process(3, env, res0, 21, -2, True, log))
 
     env.process(process2(4, env, res0, res1, 21, -1, True, log))
 
     env.run()
 
-    assert log == [(1, 0, (p1, 0, res1)), (6, 1), (21, 2, (p3, 20, res0)),
-        (26, 3), (31, 4)]
+    assert log == [
+        (1, 0, (p1, 0, res1)),
+        (6, 1),
+        (21, 2, (p3, 20, res0)),
+        (26, 3), (31, 4),
+    ]
 
 #
 # Tests for Container
@@ -665,10 +670,10 @@ def test_filter_calls_worst_case(env):
     # The filter function is repeatedly called for every item in the store
     # until a match is found.
     assert log == [
-            'put 0', 'check 0',
-            'put 1', 'check 0', 'check 1',
-            'put 2', 'check 0', 'check 1', 'check 2',
-            'put 3', 'check 0', 'check 1', 'check 2', 'check 3', 'get 3',
+        'put 0', 'check 0',
+        'put 1', 'check 0', 'check 1',
+        'put 2', 'check 0', 'check 1', 'check 2',
+        'put 3', 'check 0', 'check 1', 'check 2', 'check 3', 'get 3',
     ]
 
 

@@ -51,8 +51,8 @@ class Event(object):
     examining *ok* and do further processing with the *value* it has produced.
 
     Failed events are never silently ignored and will raise an exception upon
-    being processed. If a callback handles an exception, it must set :attr:`defused`
-    to ``True`` to prevent this.
+    being processed. If a callback handles an exception, it must set
+    :attr:`defused` to ``True`` to prevent this.
 
     This class also implements ``__and__()`` (``&``) and ``__or__()`` (``|``).
     If you concatenate two events using one of these operators,

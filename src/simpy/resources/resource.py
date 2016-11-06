@@ -62,8 +62,8 @@ class Request(base.Put):
     """
     def __exit__(self, exc_type, value, traceback):
         super(Request, self).__exit__(exc_type, value, traceback)
-        # Don't release the resource on generator cleanups. This seems to create
-        # unclaimable circular references otherwise.
+        # Don't release the resource on generator cleanups. This seems to
+        # create unclaimable circular references otherwise.
         if exc_type is not GeneratorExit:
             self.resource.release(self)
 
