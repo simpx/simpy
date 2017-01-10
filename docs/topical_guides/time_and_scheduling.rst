@@ -1,6 +1,6 @@
-=========================
-[WIP] Time and Scheduling
-=========================
+===================
+Time and Scheduling
+===================
 
 The aim of this section is to give you a deeper understanding of how time
 passes in SimPy and how it schedules and processes events.
