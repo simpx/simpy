@@ -19,6 +19,7 @@ you are looking for.
    resources
    real-time-simulations
    monitoring
+   time_and_scheduling
    porting_from_simpy2
 
 .. - analyzing results (numpy, matploblib, ...)
