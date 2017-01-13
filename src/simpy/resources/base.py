@@ -1,5 +1,5 @@
 """
-Base classes of for Simpy's shared resource types.
+Base classes of for SimPy's shared resource types.
 
 :class:`BaseResource` defines the abstract base resource. It supports *get* and
 *put* requests, which return :class:`Put` and :class:`Get` events respectively.

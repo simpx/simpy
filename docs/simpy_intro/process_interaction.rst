@@ -57,7 +57,7 @@ it to finish::
     ...     def charge(self, duration):
     ...         yield self.env.timeout(duration)
 
-Starting the simulation is straight forward again: We create an environment,
+Starting the simulation is straightforward again: We create an environment,
 one (or more) cars and finally call :meth:`~simpy.core.Environment.run()`.
 
 ::

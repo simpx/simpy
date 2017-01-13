@@ -97,5 +97,5 @@ passing an end time to it.
 What's Next?
 ============
 
-You should now be familiar with Simpy's terminology and basic concepts. In the
+You should now be familiar with SimPy's terminology and basic concepts. In the
 :doc:`next section <process_interaction>`, we will cover process interaction.

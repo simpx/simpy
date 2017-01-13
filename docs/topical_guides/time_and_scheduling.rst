@@ -59,7 +59,8 @@ So keep this in mind:
 - Discretization of the time scale can make events appear to be *at the same
   time*.
 
-- SimPy processes events *on after another*, even if they have the *samt time*.
+- SimPy processes events *one after another*, even if they have the *same
+  time*.
 
 
 SimPy Events and time
@@ -79,7 +80,7 @@ So if we insert events as tuples *(t, event)* (with *t* being the scheduled
 time) into it, the first element in the queue will by definition always be the
 one with the smallest *t* and the next one to be processed.
 
-However, storing *(t, event)* tuples will not work if two event's are scheduled
+However, storing *(t, event)* tuples will not work if two events are scheduled
 at the same time because events are not comparable.  To fix this, we also store
 a strictly increasing event ID with them: *(t, eid, event)*.  That way, if two
 events get scheduled for the same time, the one scheduled first will always be

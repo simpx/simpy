@@ -21,7 +21,7 @@ Vehicles arriving at the gas station first request a fuel pump from the
 station. Once they acquire one, they try to take the desired amount of fuel
 from the fuel pump. They leave when they are done.
 
-The gas stations fuel level is reqularly monitored by *gas station control*.
+The gas stations fuel level is regularly monitored by *gas station control*.
 When the level drops below a certain threshold, a *tank truck* is called to
 refuel the gas station itself.
 

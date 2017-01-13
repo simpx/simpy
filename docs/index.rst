@@ -3,7 +3,7 @@
     .. figure:: _static/simpy-logo-small.png
         :align: center
 
-        Event discrete simulation for Python
+        Discrete event simulation for Python
 
         `News <https://plus.google.com/101634625602509193865>`_ |
         `PyPI <https://pypi.python.org/pypi/simpy>`_ |

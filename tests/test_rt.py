@@ -1,5 +1,5 @@
 """
-Tests for Simpy's real-time behavior.
+Tests for SimPy's real-time behavior.
 
 """
 import time

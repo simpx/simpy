@@ -5,7 +5,7 @@ API Reference
 =============
 
 The API reference provides detailed descriptions of SimPy's classes and
-functions. It should be helpful if you plan to extend Simpy with custom
+functions. It should be helpful if you plan to extend SimPy with custom
 components.
 
 

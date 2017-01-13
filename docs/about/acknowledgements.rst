@@ -11,7 +11,7 @@ existing SimPy code and documentation environment.
 Thanks, guys, for this great job! **SimPy 2.0 is dedicated to you!**
 
 SimPy was originally created by Klaus Müller and Tony Vignaux. They pushed its
-development for several years and built the Simpy community. Without them,
+development for several years and built the SimPy community. Without them,
 there would be no SimPy 3.
 
 Thanks, guys, for this great job! **SimPy 3.0 is dedicated to you!**

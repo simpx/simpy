@@ -120,7 +120,7 @@ class BaseEnvironment(object):
                     raise ValueError('until(=%s) should be > the current '
                                      'simulation time.' % at)
 
-                # Schedule the event with before all regular timeouts.
+                # Schedule the event before all regular timeouts.
                 until = Event(self)
                 until._ok = True
                 until._value = None

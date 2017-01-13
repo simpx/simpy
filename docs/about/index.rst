@@ -5,7 +5,7 @@ About SimPy
 ===========
 
 This sections is all about the non-technical stuff. How did SimPy evolve? Who
-was responsible for it? And what the heck were they tinking when they made it?
+was responsible for it? And what the heck were they thinking when they made it?
 
 
 .. toctree::
