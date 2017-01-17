@@ -12,11 +12,9 @@ used, there are several specialized subclasses of it.
     ~simpy.events.AnyOf
     ~simpy.events.AllOf
 
-This module also defines the :exc:`Interrupt` exception.
-
 """
 from simpy._compat import PY2
-from simpy.exceptions import StopProcess
+from simpy.exceptions import Interrupt, StopProcess
 
 if PY2:
     import sys
@@ -238,8 +236,8 @@ class Initialize(Event):
 
 
 class Interruption(Event):
-    """Immediately schedules an :class:`Interrupt` exception with the given
-    *cause* to be thrown into *process*.
+    """Immediately schedules an :class:`~simpy.exceptions.Interrupt` exception
+    with the given *cause* to be thrown into *process*.
 
     This event is automatically triggered when it is created.
 
@@ -597,29 +595,6 @@ class AnyOf(Condition):
     """
     def __init__(self, env, events):
         super(AnyOf, self).__init__(env, Condition.any_events, events)
-
-
-class Interrupt(Exception):
-    """Exception thrown into a process if it is interrupted (see
-    :func:`~simpy.events.Process.interrupt()`).
-
-    :attr:`cause` provides the reason for the interrupt, if any.
-
-    If a process is interrupted concurrently, all interrupts will be thrown
-    into the process in the same order as they occurred.
-
-
-    """
-    def __init__(self, cause):
-        super(Interrupt, self).__init__(cause)
-
-    def __str__(self):
-        return '%s(%r)' % (self.__class__.__name__, self.cause)
-
-    @property
-    def cause(self):
-        """The cause of the interrupt or ``None`` if no cause was provided."""
-        return self.args[0]
 
 
 def _describe_frame(frame):

@@ -33,7 +33,7 @@ from simpy.resources import base
 
 
 class Preempted(object):
-    """Cause of an preemption :class:`~simpy.events.Interrupt` containing
+    """Cause of an preemption :class:`~simpy.exceptions.Interrupt` containing
     information about the preemption.
 
     """
@@ -216,7 +216,7 @@ class PreemptiveResource(PriorityResource):
     """A :class:`~simpy.resources.resource.PriorityResource` with preemption.
 
     If a request is preempted, the process of that request will receive an
-    :class:`~simpy.events.Interrupt` with a :class:`Preempted` instance as
+    :class:`~simpy.exceptions.Interrupt` with a :class:`Preempted` instance as
     cause.
 
     """

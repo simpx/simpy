@@ -89,10 +89,10 @@ SimPy allows you to interrupt a running process by calling its
 The ``driver`` process has a reference to the car's ``action`` process. After
 waiting for 3 time steps, it interrupts that process.
 
-Interrupts are thrown into process functions as :exc:`~simpy.events.Interrupt`
-exceptions that can (should) be handled by the interrupted process. The process
-can then decide what to do next (e.g., continuing to wait for the original
-event or yielding a new event)::
+Interrupts are thrown into process functions as
+:exc:`~simpy.exceptions.Interrupt` exceptions that can (should) be handled by
+the interrupted process. The process can then decide what to do next (e.g.,
+continuing to wait for the original event or yielding a new event)::
 
     >>> class Car(object):
     ...     def __init__(self, env):

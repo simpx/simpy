@@ -270,9 +270,9 @@ Explicitly checking for an interrupt is obviously error prone as it is too easy
 to be forgotten.
 
 In SimPy 3, you call :meth:`~simpy.events.Process.interrupt()` on the victim
-process. You can optionally supply a cause. An :exc:`~simpy.events.Interrupt`
-is then thrown into the victim process, which has to handle the interrupt via
-``try: ... except Interrupt: ...``.
+process. You can optionally supply a cause. An
+:exc:`~simpy.exceptions.Interrupt` is then thrown into the victim process,
+which has to handle the interrupt via ``try: ... except Interrupt: ...``.
 
 
 **SimPy 2**

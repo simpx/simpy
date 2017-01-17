@@ -143,7 +143,7 @@ charged. If we could somehow interrupt that ...
 
 Fortunate coincidence, there is indeed a way to do exactly this. You can call
 ``interrupt()`` on a :class:`~simpy.events.Process`. This will throw an
-:class:`~simpy.events.Interrupt` exception into that process, resuming it
+:class:`~simpy.exceptions.Interrupt` exception into that process, resuming it
 immediately:
 
 .. code-block:: python

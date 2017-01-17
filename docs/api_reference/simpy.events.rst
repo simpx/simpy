@@ -38,6 +38,3 @@
 
    .. autoclass:: ConditionValue
       :members:
-
-   .. autoclass:: Interrupt
-      :members:

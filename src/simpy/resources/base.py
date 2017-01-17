@@ -15,7 +15,7 @@ class Put(Event):
 
     This event (and all of its subclasses) can act as context manager and can
     be used with the :keyword:`with` statement to automatically cancel the
-    request if an exception (like an :class:`simpy.events.Interrupt` for
+    request if an exception (like an :class:`simpy.exceptions.Interrupt` for
     example) occurs:
 
     .. code-block:: python
@@ -44,7 +44,7 @@ class Put(Event):
 
         This method has to be called if the put request must be aborted, for
         example if a process needs to handle an exception like an
-        :class:`~simpy.events.Interrupt`.
+        :class:`~simpy.exceptions.Interrupt`.
 
         If the put request was created in a :keyword:`with` statement, this
         method is called automatically.
@@ -59,7 +59,7 @@ class Get(Event):
 
     This event (and all of its subclasses) can act as context manager and can
     be used with the :keyword:`with` statement to automatically cancel the
-    request if an exception (like an :class:`simpy.events.Interrupt` for
+    request if an exception (like an :class:`simpy.exceptions.Interrupt` for
     example) occurs:
 
     .. code-block:: python
@@ -88,7 +88,7 @@ class Get(Event):
 
         This method has to be called if the get request must be aborted, for
         example if a process needs to handle an exception like an
-        :class:`~simpy.events.Interrupt`.
+        :class:`~simpy.exceptions.Interrupt`.
 
         If the get request was created in a :keyword:`with` statement, this
         method is called automatically.

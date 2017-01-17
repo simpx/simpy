@@ -87,9 +87,9 @@ events get scheduled for the same time, the one scheduled first will always be
 processed first.
 
 
-Remove determinism by "jittering" timeouts
-==========================================
-
-.. TODO:
-A relatively easy way to remove the determinism from your simulation is to
-add "jitter" to
+.. Remove determinism by "jittering" timeouts
+.. ==========================================
+..
+.. .. TODO:
+.. A relatively easy way to remove the determinism from your simulation is to
+.. add "jitter" to
