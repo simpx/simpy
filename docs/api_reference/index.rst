@@ -14,6 +14,7 @@ components.
 
    simpy
    simpy.core
+   simpy.exceptions
    simpy.events
    simpy.resources
    simpy.rt

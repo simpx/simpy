@@ -6,6 +6,7 @@ import types
 from heapq import heappush, heappop
 from itertools import count
 
+from simpy.exceptions import StopProcess
 from simpy.events import (AllOf, AnyOf, Event, Process, Timeout, URGENT,
                           NORMAL)
 
@@ -151,7 +152,7 @@ class BaseEnvironment(object):
         a process.
 
         """
-        raise StopIteration(value)
+        raise StopProcess(value)
 
 
 class Environment(BaseEnvironment):

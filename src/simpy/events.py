@@ -16,6 +16,7 @@ This module also defines the :exc:`Interrupt` exception.
 
 """
 from simpy._compat import PY2
+from simpy.exceptions import StopProcess
 
 if PY2:
     import sys
@@ -376,7 +377,7 @@ class Process(Event):
                         if hasattr(event._value, '__traceback__'):
                             exc.__traceback__ = event._value.__traceback__
                     event = self._generator.throw(exc)
-            except StopIteration as e:
+            except (StopIteration, StopProcess) as e:
                 # Process has terminated.
                 event = None
                 self._ok = True
@@ -609,6 +610,9 @@ class Interrupt(Exception):
 
 
     """
+    def __init__(self, cause):
+        super(Interrupt, self).__init__(cause)
+
     def __str__(self):
         return '%s(%r)' % (self.__class__.__name__, self.cause)
 
