@@ -193,7 +193,7 @@ the callbacks of the event that it is currently waiting for (see
 :attr:`~simpy.events.Process.target`). Following that it will throw the
 ``Interrupt`` exception into the process.
 
-Since we don't to anything special to the original target event of the process,
+Since we don't do anything special to the original target event of the process,
 the interrupted process can yield the same event again after catching the
 ``Interrupt`` – Imagine someone waiting for a shop to open. The person may get
 interrupted by a phone call.  After finishing the call, he or she checks if the
