@@ -1,10 +1,11 @@
 .. _ports:
 
-=====
-Ports
-=====
+==============================
+Ports and comparable libraries
+==============================
 
-Reimplementations of SimPy are available in the following languages:
+Reimplementations of SimPy and libraries similar to SimPy are available in the
+following languages:
 
 - C#: `SimSharp <https://github.com/abeham/SimSharp>`_ (written by Andreas Beham)
 - Julia: `SimJulia <https://github.com/BenLauwens/SimJulia.jl>`_
