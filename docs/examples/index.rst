@@ -7,7 +7,7 @@ Examples
 All theory is grey. In this section, we present various practical examples that
 demonstrate how to uses SimPy's features.
 
-Here's a list of examples grouped by features they demonstrate.
+Here is a list of examples grouped by the features they demonstrate.
 
 Condition events
 ================
@@ -80,6 +80,6 @@ All examples
    process_communication
    latency
 
-You have ideas for better examples? Please send them to our `mainling list
+You have ideas for better examples? Please send them to our `mailing list
 <https://lists.sourceforge.net/lists/listinfo/simpy-users>`_ or make a pull
 request on `bitbucket <https://bitbucket.org/simpy/simpy>`_.
