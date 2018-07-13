@@ -90,13 +90,7 @@ Build and release
 
     $ rm -rf /tmp/simpy-sdist  # ensure clean state if ran repeatedly
     $ virtualenv /tmp/simpy-sdist
-    $ /tmp/simpy-sdist/bin/pip install pytest
     $ /tmp/simpy-sdist/bin/pip install dist/simpy-a.b.c.tar.gz
-    $ /tmp/simpy-sdist/bin/python
-    >>> import simpy  # doctest: +SKIP
-    >>> simpy.__version__  # doctest: +SKIP
-    'a.b.c'
-    >>> simpy.test()  # doctest: +SKIP
 
    and
 
@@ -104,13 +98,7 @@ Build and release
 
     $ rm -rf /tmp/simpy-wheel  # ensure clean state if ran repeatedly
     $ virtualenv /tmp/simpy-wheel
-    $ /tmp/simpy-wheel/bin/pip install pytest
     $ /tmp/simpy-wheel/bin/pip install dist/simpy-a.b.c-py2.py3-none-any.whl
-    $ /tmp/simpy-wheel/bin/python
-    >>> import simpy  # doctest: +SKIP
-    >>> simpy.__version__  # doctest: +SKIP
-    'a.b.c'
-    >>> simpy.test()  # doctest: +SKIP
 
 #. Create or check your accounts for the `test server
    <https://testpypi.python.org/pypi>` and `PyPI
