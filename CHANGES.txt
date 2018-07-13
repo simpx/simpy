@@ -1,6 +1,15 @@
 Changelog for SimPy
 ===================
 
+3.0.11 - 2018-07-13
+-------------------
+
+- [FIX] Repair Environment.exit() to support PEP-479 and Python 3.7.
+- [FIX] Fix wrong usage_since calculation in preemptions
+- [NEW] Add "Time and Scheduling" section to docs
+- [CHANGE] Move Interrupt from events to exceptions
+- [FIX] Various minor documentation improvements
+
 3.0.10 – 2016-08-26
 -------------------
 
