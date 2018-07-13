@@ -55,7 +55,8 @@ Preparations
 
     $ hg ci -m 'Updated change log for the upcoming release.'
 
-#. Update the version number in :file:`simpy/__init__.py` and commit:
+#. Update the version number in :file:`simpy/__init__.py` and :file:`setup.py`
+   and commit:
 
    .. code-block:: bash
 
