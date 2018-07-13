@@ -237,7 +237,7 @@ def test_sys_excepthook(env):
 
     try:
         env.run()
-    except:
+    except BaseException:
         # Let the default exception hook print the traceback to the redirected
         # standard error channel.
         import sys
