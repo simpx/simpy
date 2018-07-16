@@ -6,7 +6,7 @@ setup(
     name='simpy',
     version='3.0.11',
     author='Ontje Lünsdorf, Stefan Scherfke',
-    author_email='the_com at gmx.de; stefan at sofa-rockers.org',
+    author_email='the_com@gmx.de, stefan@sofa-rockers.org',
     description='Event discrete, process based simulation for Python.',
     long_description='\n\n'.join(
         open(f, 'rb').read().decode('utf-8')
