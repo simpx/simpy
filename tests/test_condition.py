@@ -112,8 +112,9 @@ def test_cond_with_nested_error(env):
 
     def process(env):
         try:
-            yield (env.process(explode(env, 0)) & env.timeout(1) |
-                   env.timeout(1))
+            yield (
+                env.process(explode(env, 0)) & env.timeout(1) | env.timeout(1)
+            )
             pytest.fail('The condition should have raised a ValueError')
         except ValueError as err:
             assert err.args == ('Onoes, failed after 0!',)

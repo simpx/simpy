@@ -349,7 +349,7 @@ class Process(Event):
         """
         Interruption(self, cause)
 
-    def _resume(self, event):
+    def _resume(self, event):  # noqa: C901
         """Resumes the execution of the process with the value of *event*. If
         the process generator exits, the process itself will get triggered with
         the return value or the exception of the generator."""
