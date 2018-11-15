@@ -152,7 +152,7 @@ processes and chained:
     ...
     ...     def pupil(self):
     ...         for i in range(2):
-    ...             print(' \o/', end='')
+    ...             print(r' \o/', end='')
     ...             yield self.class_ends
     ...
     >>> school = School(env)
