@@ -1,0 +1,8 @@
+flake8
+pytest
+pytest-benchmark
+pytest-cov
+sphinx
+sphinx-rtd-theme
+tox
+twine
