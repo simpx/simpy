@@ -1,7 +1,67 @@
-image: python:latest
+image: python
 
-pytest:
+stages:
+  - build
+  - test
+
+build:
+  stage: build
   script:
-    - pip install -e .
-    - pip install -U pytest pytest-cov
-    - py.test --cov=src --cov-report=term-missing tests
+    - python setup.py sdist
+    - pip install dist/*.tar.gz
+    - python -c 'import simpy; print(simpy.__version__)'
+    - pip uninstall --yes --quiet simpy
+    - python setup.py bdist_wheel
+    - pip install dist/*.whl
+    - python -c 'import simpy; print(simpy.__version__)'
+    - pip uninstall --yes --quiet simpy
+  artifacts:
+    paths:
+      - dist
+
+python27:
+  image: python:2.7
+  stage: test
+  script:
+    - pip install tox
+    - tox -e 'py27'
+
+python36:
+  image: python:3.6
+  stage: test
+  script:
+    - pip install tox
+    - tox -e 'py36'
+
+python37:
+  image: python:3.7
+  stage: test
+  script:
+    - pip install tox
+    - tox -e 'py37'
+
+pypy2:
+  image: pypy:2
+  stage: test
+  script:
+    - pip install tox
+    - tox -e 'pypy'
+
+pypy3:
+  image: pypy:3
+  stage: test
+  script:
+    - pip install tox
+    - tox -e 'pypy3'
+
+doctest:
+  stage: test
+  script:
+    - pip install tox
+    - tox -e docs
+
+flake8:
+  stage: test
+  script:
+    - pip install tox
+    - tox -e flake8
