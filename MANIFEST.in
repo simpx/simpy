@@ -1,6 +1,6 @@
 include *.cfg
 include *.ini
-include *.txt
+include *.rst
 recursive-include docs *
 recursive-exclude docs *.pyc
 recursive-exclude docs/_build *
